@@ -45,3 +45,6 @@
           sudo: yes
           sudo_user: pmc
 
+        - name: install perl dependencies
+          apt: name=twiggy
+          sudo: yes
