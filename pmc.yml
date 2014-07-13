@@ -48,3 +48,11 @@
         - name: install perl dependencies
           apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl
           sudo: yes
+
+        - name: install screen
+          apt: name=screen
+          sudo: yes
+
+        - name: install cron job
+          cron: special_time=reboot name="pmc" user=pmc job="/bin/bash --login -c 'cd /home/pmc/pi-media-controller; PMC_HOST=10.0.1.13 PMC_DATABASE=/media/SARTAK/media.sqlite screen -dmUS pmc twiggy -Ilib -Iextlib'"
+          sudo: yes
