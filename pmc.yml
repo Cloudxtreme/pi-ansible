@@ -35,10 +35,6 @@
           user: name=pmc
           sudo: yes
 
-        - name: Add pmc user to sudoers
-          lineinfile: dest=/etc/sudoers regexp="pmc ALL" line="pmc ALL=(ALL) ALL" state=present
-          sudo: yes
-
         - name: automatically mount SARTAK
           lineinfile: dest=/etc/fstab regexp="/media/SARTAK" line="/dev/disk/by-uuid/391F-8964 /media/SARTAK vfat defaults,dmask=0000,fmask=0000,utf8,noatime,auto 0 0" state=present
           sudo: yes
