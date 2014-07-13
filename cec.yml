@@ -1,0 +1,44 @@
+---
+- hosts: tleilax
+  tasks:
+        - name: apt-get update
+          apt: update_cache=yes
+          sudo: yes
+
+        - name: install cec deps
+          apt: name=build-essential,autoconf,liblockdev1-dev,libudev-dev,git,libtool,pkg-config
+          sudo: yes
+
+        - name: clone libcec repo
+          git: repo=git://github.com/Pulse-Eight/libcec.git dest=/home/pi/libcec
+
+        - name: bootstrap
+          shell: ./bootstrap
+          args:
+            chdir: /home/pi/libcec
+
+        - name: configure
+          shell: ./configure --with-rpi-include-path=/opt/vc/include --with-rpi-lib-path=/opt/vc/lib --enable-rpi
+          args:
+            chdir: /home/pi/libcec
+
+        - name: make
+          shell: make
+          args:
+            chdir: /home/pi/libcec
+
+        - name: make install
+          sudo: yes
+          shell: make install
+          args:
+            chdir: /home/pi/libcec
+
+        - name: ldconfig
+          sudo: yes
+          shell: ldconfig
+          args:
+            chdir: /home/pi/libcec
+
+        - name: Remove checkout
+          file: name=/home/pi/libcec state=absent
+
