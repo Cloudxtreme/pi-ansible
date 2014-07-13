@@ -46,5 +46,5 @@
           sudo_user: pmc
 
         - name: install perl dependencies
-          apt: name=twiggy
+          apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl
           sudo: yes
