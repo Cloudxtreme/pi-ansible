@@ -1,0 +1,3 @@
+ssh tleilax mkdir .ssh
+scp ~/.ssh/authorized_keys tleilax:.ssh/
+ansible-playbook -i ansible.inventory pmc.yml
