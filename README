@@ -1,3 +1,16 @@
+in ~/.ssh/config:
+    Host tleilax
+        HostName 10.0.1.13
+        UserKnownHostsFile /dev/null
+        User pi
+        StrictHostKeyChecking no
+
+    Host tleilax-remote
+        HostName tleilax.sartak.org
+        User pi
+        Port 2213
+
+
 ssh tleilax mkdir .ssh
 scp ~/.ssh/authorized_keys tleilax:.ssh/
 ansible-playbook -i ansible.inventory pmc.yml

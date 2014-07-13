@@ -1,7 +1,33 @@
 ---
 - hosts: tleilax
-  tasks:
-      - name: apt-get update
-        apt: update_cache=yes
-        sudo: yes
 
+  handlers:
+        - name: Restart ssh
+          action: service name=ssh state=restarted
+
+  tasks:
+        - name: apt-get update
+          apt: update_cache=yes
+          sudo: yes
+
+        - name: Disallow password authentication
+          lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+          notify: Restart ssh
+          sudo: yes
+
+        - name: nginx
+          apt: name=nginx state=present
+          sudo: yes
+
+        - name: create pmc user
+          user: name=pmc
+          sudo: yes
+
+        - name: Add pmc user to sudoers
+          lineinfile: dest=/etc/sudoers regexp="pmc ALL" line="pmc ALL=(ALL) ALL" state=present
+          sudo: yes
+
+        - name: clone pi-media-controller repo
+          git: repo=https://github.com/sartak/pi-media-controller.git dest=/home/pmc/pi-media-controller
+          sudo: yes
+          sudo_user: pmc
