@@ -27,6 +27,10 @@
           file: name=/etc/nginx/sites-enabled/default state=absent
           sudo: yes
 
+        - name: sqlite
+          apt: name=sqlite3 state=present
+          sudo: yes
+
         - name: create pmc user
           user: name=pmc
           sudo: yes
