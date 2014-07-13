@@ -23,6 +23,10 @@
           apt: name=nginx state=present
           sudo: yes
 
+        - name: Remove default nginx page
+          file: name=/etc/nginx/sites-enabled/default state=absent
+          sudo: yes
+
         - name: create pmc user
           user: name=pmc
           sudo: yes
