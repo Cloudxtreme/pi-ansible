@@ -32,7 +32,7 @@
           sudo: yes
 
         - name: create pmc user
-          user: name=pmc
+          user: name=pmc group=video
           sudo: yes
 
         - name: automatically mount SARTAK
@@ -47,10 +47,6 @@
 
         - name: install perl dependencies
           apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl
-          sudo: yes
-
-        - name: fix permissions
-          file: name=/dev/vchiq mode=0666
           sudo: yes
 
         - name: install screen
