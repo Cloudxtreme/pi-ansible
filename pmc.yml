@@ -46,7 +46,7 @@
           sudo_user: pmc
 
         - name: install perl dependencies
-          apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl
+          apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl,libfile-next-perl
           sudo: yes
 
         - name: install screen
