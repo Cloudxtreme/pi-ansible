@@ -49,6 +49,10 @@
           apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl
           sudo: yes
 
+        - name: fix permissions
+          file: name=/dev/vchiq mode=0666
+          sudo: yes
+
         - name: install screen
           apt: name=screen
           sudo: yes
