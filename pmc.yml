@@ -5,7 +5,7 @@
         - name: Restart ssh
           action: service name=ssh state=restarted
 
-        - name: Mount SARTAK
+        - name: Mount leto
           shell: mount -a
           sudo: yes
 
@@ -35,10 +35,14 @@
           user: name=pmc group=video
           sudo: yes
 
-        - name: automatically mount SARTAK
-          lineinfile: dest=/etc/fstab regexp="/media/SARTAK" line="/dev/disk/by-uuid/391F-8964 /media/SARTAK vfat defaults,dmask=0000,fmask=0000,utf8,noatime,auto 0 0" state=present
+        - name: exfat-utils
+           apt: name=exfat-utils state=present
           sudo: yes
-          notify: Mount SARTAK
+
+        - name: automatically mount leto
+        lineinfile: dest=/etc/fstab regexp="/media/leto" line="/dev/disk/by-uuid/542D-BC8D /media/leto exfat defaults,dmask=0000,fmask=0000,utf8,noatime,auto 0 0" state=present
+          sudo: yes
+          notify: Mount leto
 
         - name: clone pi-media-controller repo
           git: repo=https://github.com/sartak/pi-media-controller.git dest=/home/pmc/pi-media-controller
@@ -57,5 +61,5 @@
           file: dest=/home/pi/.hushlogin state=touch
 
         - name: install cron job
-          cron: special_time=reboot name="pmc" user=pmc job="/bin/bash --login -c 'cd /home/pmc/pi-media-controller; PMC_HOST=10.0.1.13 PMC_DATABASE=/media/SARTAK/media.sqlite screen -dmUS pmc twiggy -Ilib -Iextlib'"
+          cron: special_time=reboot name="pmc" user=pmc job="/bin/bash --login -c 'cd /home/pmc/pi-media-controller; PMC_HOST=10.0.1.13 PMC_DATABASE=/media/leto/media.sqlite screen -dmUS pmc twiggy -Ilib -Iextlib'"
           sudo: yes
