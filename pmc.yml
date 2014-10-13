@@ -60,6 +60,10 @@
         - name: disable login noise
           file: dest=/home/pi/.hushlogin state=touch
 
-        - name: install cron job
+        - name: install boot cron job
           cron: special_time=reboot name="pmc" user=pmc job="/bin/bash --login -c 'cd /home/pmc/pi-media-controller; PMC_HOST=10.0.1.13 PMC_DATABASE=/media/leto/media.sqlite screen -dmUS pmc twiggy -Ilib -Iextlib'"
+          sudo: yes
+
+        - name: install backup cron job
+          cron: special_time=hourly name="pmc" user=pmc job="/bin/bash --login -c 'cp /media/leto/media.sqlite tmp.sqlite; mv tmp.sqlite /media/leto/backup/media-$(shasum tmp.sqlite | perl -e "<> =~ /^(\w+) /; print \$1").sqlite'"
           sudo: yes
