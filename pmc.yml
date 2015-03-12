@@ -65,5 +65,5 @@
           sudo: yes
 
         - name: install backup cron job
-          cron: special_time=hourly name="pmc" user=pmc job="/bin/bash --login -c 'cp /media/leto/media.sqlite tmp.sqlite; mv tmp.sqlite /media/leto/backup/media-$(shasum tmp.sqlite | perl -e "<> =~ /^(\w+) /; print \$1").sqlite'"
+          cron: special_time=hourly name="pmc" user=pmc job="/bin/bash --login -c 'cp /media/leto/media.sqlite tmp.sqlite; mv tmp.sqlite /media/leto/backup/media-$(shasum tmp.sqlite | perl -e \"<> =~ /^(\w+) /; print \$1\").sqlite'"
           sudo: yes
