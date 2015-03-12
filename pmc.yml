@@ -1,5 +1,5 @@
 ---
-- hosts: tleilax
+- hosts: junction
 
   handlers:
         - name: Restart ssh
