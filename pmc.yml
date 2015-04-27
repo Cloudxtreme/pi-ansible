@@ -58,7 +58,7 @@
           sudo: yes
 
         - name: install config
-          file: dest=/home/pmc/pi-media-controller/config.json src=/media/leto/pmc.config state=link
+          file: dest=/home/pmc/pi-media-controller/config.json src=/media/leto/pmc.config state=link force=yes
           sudo: yes
           sudo_user: pmc
 
