@@ -62,6 +62,10 @@
           sudo: yes
           sudo_user: pmc
 
+        - name: fix screen attaching as pmc
+          lineinfile: dest=/home/pi/.bashrc regexp="sudo chown pmc `tty`" line="sudo chown pmc `tty`" state=present
+          sudo: yes
+
         - name: disable login noise
           file: dest=/home/pi/.hushlogin state=touch
 
