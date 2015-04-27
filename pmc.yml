@@ -40,7 +40,7 @@
           sudo: yes
 
         - name: automatically mount leto
-          lineinfile: dest=/etc/fstab regexp="/media/leto" line="/dev/disk/by-uuid/542D-BC8D /media/leto ext4 defaults,dmask=0000,fmask=0000,utf8,noatime,auto 0 0" state=present
+          lineinfile: dest=/etc/fstab regexp="/media/leto" line="/dev/disk/by-uuid/6ef5a53b-bf29-44bd-877e-e02d6e8048d7 /media/leto ext4 defaults,dmask=0000,fmask=0000,utf8,noatime,auto 0 0" state=present
           sudo: yes
           notify: Mount leto
 
