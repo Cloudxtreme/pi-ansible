@@ -35,16 +35,12 @@
           user: name=pmc group=video
           sudo: yes
 
-        - name: exfat utils
-          apt: name="exfat-utils" state=present
-          sudo: yes
-
         - name: create leto mount dir
           file: name=/media/leto state=directory
           sudo: yes
 
         - name: automatically mount leto
-          lineinfile: dest=/etc/fstab regexp="/media/leto" line="/dev/disk/by-uuid/542D-BC8D /media/leto exfat defaults,dmask=0000,fmask=0000,utf8,noatime,auto 0 0" state=present
+          lineinfile: dest=/etc/fstab regexp="/media/leto" line="/dev/disk/by-uuid/542D-BC8D /media/leto ext4 defaults,dmask=0000,fmask=0000,utf8,noatime,auto 0 0" state=present
           sudo: yes
           notify: Mount leto
 
