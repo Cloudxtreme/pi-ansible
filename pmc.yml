@@ -66,6 +66,11 @@
           lineinfile: dest=/home/pi/.bashrc regexp="sudo chown pmc `tty`" line="sudo chown pmc `tty`" state=present
           sudo: yes
 
+        - name: PMC_DATABASE
+          lineinfile: dest=/home/pmc/.bashrc regexp="PMC_DATABASE=" line="export PMC_DATABASE=/media/leto/media.sqlite" state=present
+          sudo: yes
+          sudo_user: pmc
+
         - name: disable login noise
           file: dest=/home/pi/.hushlogin state=touch
 
