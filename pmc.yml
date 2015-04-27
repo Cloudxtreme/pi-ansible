@@ -61,6 +61,11 @@
           apt: name=screen
           sudo: yes
 
+        - name: install config
+          file: dest=/home/pmc/pi-media-controller/config.json src=/media/leto/pmc.config state=link
+          sudo: yes
+          sudo_user: pmc
+
         - name: disable login noise
           file: dest=/home/pi/.hushlogin state=touch
 
