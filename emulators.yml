@@ -93,20 +93,20 @@
           sudo: yes
           sudo_user: pmc
 
-        - name: clone vba
-          git: repo=git://github.com/libretro/vba-next.git dest=/home/pmc/vba-next
+        - name: clone gpsp
+          git: repo=git://github.com/libretro/gpsp.git dest=/home/pmc/gpsp
           sudo: yes
           sudo_user: pmc
 
-        - name: compile vba
-          shell: make -f Makefile.libretro creates=/home/pmc/vba-next/vba_next_libretro.so platform=armvhardfloatunix TILED_RENDERING=1 HAVE_NEON=1
+        - name: compile gpsp
+          shell: make creates=/home/pmc/gpsp/gpsp_libretro.so
           sudo: yes
           sudo_user: pmc
           args:
-            chdir: /home/pmc/vba-next
+            chdir: /home/pmc/gpsp
 
-        - name: install vba
-          shell: cp /home/pmc/vba-next/vba_next_libretro.so /home/pmc/RetroArch/ creates=/home/pmc/RetroArch/vba_next_libretro.so
+        - name: install gpsp
+          shell: cp /home/pmc/gpsp/gpsp_libretro.so /home/pmc/RetroArch/ creates=/home/pmc/RetroArch/gpsp_libretro.so
           sudo: yes
           sudo_user: pmc
 
