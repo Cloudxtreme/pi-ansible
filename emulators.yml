@@ -99,7 +99,7 @@
           sudo_user: pmc
 
         - name: compile vba
-          shell: make -f Makefile.libretro creates=/home/pmc/vba-next/vba_next_libretro.so
+          shell: make -f Makefile.libretro creates=/home/pmc/vba-next/vba_next_libretro.so platform=armvhardfloatunix TILED_RENDERING=1 HAVE_NEON=1
           sudo: yes
           sudo_user: pmc
           args:
