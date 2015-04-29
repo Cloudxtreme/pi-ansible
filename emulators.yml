@@ -1,0 +1,132 @@
+---
+- hosts: junction
+
+  tasks:
+        - name: apt-get update
+          apt: update_cache=yes
+          sudo: yes
+
+        - name: install dependencies
+          apt: name=bluetooth,vorbis-tools,python-cwiid,wminput,libsamplerate0-dev,libasound2-dev,libspeexdsp-dev,alsa-utils
+          sudo: yes
+
+        - name: fix audio driver
+          lineinfile: dest=/etc/modprobe.d/alsa-base.conf regexp="snd_bcm2835" line="options snd_bcm2835 index=1" state=present
+          sudo: yes
+
+        - name: add pmc to audio and input groups
+          user: name=pmc groups=audio,input append=yes
+          sudo: yes
+
+        - name: add uinput to /etc/modules
+          lineinfile: dest=/etc/modules regexp="uinput" line="uinput" state=present
+          sudo: yes
+
+        - name: add joydev to /etc/modules
+          lineinfile: dest=/etc/modules regexp="joydev" line="joydev" state=present
+          sudo: yes
+
+        - name: add udev rule
+          shell: echo 'KERNEL=="uinput", MODE:="0666"' > /etc/udev/rules.d/wiimote.rules creates=/etc/udev/rules.d/wiimote.rules
+          sudo: yes
+
+        - name: clone RetroArch
+          git: repo=git://github.com/libretro/RetroArch.git dest=/home/pmc/RetroArch
+          sudo: yes
+          sudo_user: pmc
+
+        - name: compile RetroArch
+          shell: 'CFLAGS="-Ofast -mfpu=vfp -mfloat-abi=hard" ./configure --disable-x11 --enable-floathard --disable-ffmpeg  --enable-udev --disable-pulse --disable-oss --enable-neon --disable-netplay && make clean && make creates=/home/pmc/RetroArch/retroarch'
+          sudo: yes
+          sudo_user: pmc
+          args:
+            chdir: /home/pmc/RetroArch
+
+        - name: clone fceumm
+          git: repo=git://github.com/libretro/libretro-fceumm.git dest=/home/pmc/libretro-fceumm
+          sudo: yes
+          sudo_user: pmc
+
+        - name: compile fceumm
+          shell: make -f Makefile.libretro creates=/home/pmc/libretro-fceumm/fceumm_libretro.so
+          sudo: yes
+          sudo_user: pmc
+          args:
+            chdir: /home/pmc/libretro-fceumm
+
+        - name: install fceumm
+          shell: cp /home/pmc/libretro-fceumm/fceumm_libretro.so /home/pmc/RetroArch/ creates=/home/pmc/RetroArch/fceumm_libretro.so
+          sudo: yes
+          sudo_user: pmc
+
+        - name: clone picodrive
+          git: repo=git://github.com/libretro/picodrive.git dest=/home/pmc/picodrive
+          sudo: yes
+          sudo_user: pmc
+
+        - name: compile picodrive
+          shell: make -f Makefile.libretro creates=/home/pmc/picodrive/picodrive_libretro.so
+          sudo: yes
+          sudo_user: pmc
+          args:
+            chdir: /home/pmc/picodrive
+
+        - name: install picodrive
+          shell: cp /home/pmc/picodrive/picodrive_libretro.so /home/pmc/RetroArch/ creates=/home/pmc/RetroArch/picodrive_libretro.so
+          sudo: yes
+          sudo_user: pmc
+
+        - name: clone snes9x repo
+          git: repo=git://github.com/libretro/snes9x-next.git dest=/home/pmc/snes9x-next
+          sudo: yes
+          sudo_user: pmc
+
+        - name: compile snes9x
+          shell: make -f Makefile.libretro creates=/home/pmc/snes9x-next/snes9x_next_libretro.so
+          sudo: yes
+          sudo_user: pmc
+          args:
+            chdir: /home/pmc/snes9x-next
+
+        - name: install snes9x
+          shell: cp /home/pmc/snes9x-next/snes9x_next_libretro.so /home/pmc/RetroArch/ creates=/home/pmc/RetroArch/snes9x_next_libretro.so
+          sudo: yes
+          sudo_user: pmc
+
+        - name: clone vba
+          git: repo=git://github.com/libretro/vba-next.git dest=/home/pmc/vba-next
+          sudo: yes
+          sudo_user: pmc
+
+        - name: compile vba
+          shell: make -f Makefile.libretro creates=/home/pmc/vba-next/vba_next_libretro.so
+          sudo: yes
+          sudo_user: pmc
+          args:
+            chdir: /home/pmc/vba-next
+
+        - name: install vba
+          shell: cp /home/pmc/vba-next/vba_next_libretro.so /home/pmc/RetroArch/ creates=/home/pmc/RetroArch/vba_next_libretro.so
+          sudo: yes
+          sudo_user: pmc
+
+        - name: install wiimote 1 boot cron job
+          cron: special_time=reboot name="wiimote 1" user=pmc job="/bin/bash --login -c 'sleep 10; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c  /tmp/wiimote.input 00:27:09:D4:0B:57'"
+          sudo: yes
+          sudo_user: pmc
+
+        - name: install wiimote 2 boot cron job
+          cron: special_time=reboot name="wiimote 2" user=pmc job="/bin/bash --login -c 'sleep 10; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c  /tmp/wiimote.input 00:1E:35:14:8F:E8'"
+          sudo: yes
+          sudo_user: pmc
+
+#        - name: install wiimote 3 boot cron job
+#          cron: special_time=reboot name="wiimote 3" user=pmc job="/bin/bash --login -c 'sleep 20; wminput -d -c  /media/leto/ROM/wiimote.input 00:1E:35:D8:B2:2A'"
+#          sudo: yes
+#          sudo_user: pmc
+#
+#        - name: install wiimote 4 boot cron job
+#          cron: special_time=reboot name="wiimote 4" user=pmc job="/bin/bash --login -c 'sleep 25; wminput -d -c  /media/leto/ROM/wiimote.input 00:1E:35:71:F3:C8'"
+#          sudo: yes
+#          sudo_user: pmc
+
