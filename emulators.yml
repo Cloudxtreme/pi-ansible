@@ -36,7 +36,7 @@
           sudo_user: pmc
 
         - name: compile RetroArch
-          shell: 'CFLAGS="-Ofast -mfpu=vfp -mfloat-abi=hard" ./configure --disable-x11 --enable-floathard --disable-ffmpeg  --enable-udev --disable-pulse --disable-oss --enable-neon --disable-netplay && make clean && make creates=/home/pmc/RetroArch/retroarch'
+          shell: 'CFLAGS="-O2 -mfpu=neon-vfpv4 -mfloat-abi=hard" ./configure --disable-x11 --enable-floathard --disable-ffmpeg  --enable-udev --disable-pulse --disable-oss --enable-neon --disable-netplay && make clean && make -j2 creates=/home/pmc/RetroArch/retroarch'
           sudo: yes
           sudo_user: pmc
           args:
