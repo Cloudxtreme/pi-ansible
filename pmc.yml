@@ -53,8 +53,8 @@
           apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl,libfile-next-perl,libmp4-info-perl,libimage-exiftool-perl,libfile-slurp-perl,libxml-libxml-perl,libxml-libxml-lazybuilder-perl,libpackage-new-perl,libnet-upnp-perl,libdigest-sha-perl
           sudo: yes
 
-        - name: install screen and vim
-          apt: name=screen,vim
+        - name: install useful tools
+          apt: name=screen,vim,lsof
           sudo: yes
 
         - name: install config
