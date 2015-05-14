@@ -45,7 +45,7 @@
           notify: Mount leto
 
         - name: clone pi-media-controller repo
-          git: repo=https://github.com/sartak/pi-media-controller.git dest=/home/pmc/pi-media-controller
+          git: repo=https://github.com/sartak/pi-media-controller.git dest=/home/pmc/pi-media-controller update=no
           sudo: yes
           sudo_user: pmc
 
