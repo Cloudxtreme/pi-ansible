@@ -93,6 +93,23 @@
           sudo: yes
           sudo_user: pmc
 
+        - name: clone pocketsnes repo
+          git: repo=git://github.com/libretro/pocketsnes-libretro.git dest=/home/pmc/pocketsnes-libretro
+          sudo: yes
+          sudo_user: pmc
+
+        - name: compile pocketsnes
+          shell: make creates=/home/pmc/pocketsnes-libretro/libretro.so
+          sudo: yes
+          sudo_user: pmc
+          args:
+            chdir: /home/pmc/pocketsnes-libretro
+
+        - name: install pocketsnes
+          shell: cp /home/pmc/pocketsnes-libretro/libretro.so /home/pmc/RetroArch/ creates=/home/pmc/RetroArch/pocketsnes_libretro.so
+          sudo: yes
+          sudo_user: pmc
+
         - name: clone gpsp
           git: repo=git://github.com/libretro/gpsp.git dest=/home/pmc/gpsp
           sudo: yes
