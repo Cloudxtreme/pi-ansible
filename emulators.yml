@@ -128,22 +128,22 @@
           sudo_user: pmc
 
         - name: install wiimote 1 boot cron job
-          cron: special_time=reboot name="wiimote 1" user=pmc job="/bin/bash --login -c 'sleep 10; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c  /tmp/wiimote.input 00:27:09:D4:0B:57'"
+          cron: special_time=reboot name="wiimote 1" user=pmc job="/bin/bash --login -c 'sleep 10; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:27:09:D4:0B:57'"
           sudo: yes
           sudo_user: pmc
 
         - name: install wiimote 2 boot cron job
-          cron: special_time=reboot name="wiimote 2" user=pmc job="/bin/bash --login -c 'sleep 15; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c  /tmp/wiimote.input 00:1E:35:14:8F:E8'"
+          cron: special_time=reboot name="wiimote 2" user=pmc job="/bin/bash --login -c 'sleep 15; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:1E:35:14:8F:E8'"
           sudo: yes
           sudo_user: pmc
 
-#        - name: install wiimote 3 boot cron job
-#          cron: special_time=reboot name="wiimote 3" user=pmc job="/bin/bash --login -c 'sleep 20; wminput -d -c  /media/leto/ROM/wiimote.input 00:1E:35:D8:B2:2A'"
-#          sudo: yes
-#          sudo_user: pmc
-#
-#        - name: install wiimote 4 boot cron job
-#          cron: special_time=reboot name="wiimote 4" user=pmc job="/bin/bash --login -c 'sleep 25; wminput -d -c  /media/leto/ROM/wiimote.input 00:1E:35:71:F3:C8'"
-#          sudo: yes
-#          sudo_user: pmc
+        - name: install wiimote 3 boot cron job
+          cron: special_time=reboot name="wiimote 3" user=pmc job="/bin/bash --login -c 'sleep 20; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:1E:35:D8:B2:2A'"
+          sudo: yes
+          sudo_user: pmc
+
+        - name: install wiimote 4 boot cron job
+          cron: special_time=reboot name="wiimote 4" user=pmc job="/bin/bash --login -c 'sleep 25; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:1E:35:71:F3:C8'"
+          sudo: yes
+          sudo_user: pmc
 
