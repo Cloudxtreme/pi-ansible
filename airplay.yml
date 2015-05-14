@@ -1,0 +1,29 @@
+---
+- hosts: junction
+
+  tasks:
+        - name: apt-get update
+          apt: update_cache=yes
+          sudo: yes
+
+        - name: install dependencies
+          apt: name=libao-dev,libssl-dev,avahi-utils,libwww-perl,libcrypt-openssl-rsa-perl,libio-socket-inet6-perl,libmodule-build-perl
+          sudo: yes
+
+        - name: clone shairport
+          git: repo=https://github.com/abrasive/shairport.git dest=/home/pmc/shairport
+          sudo: yes
+          sudo_user: pmc
+
+        - name: build shairport
+          shell: make
+          sudo: yes
+          sudo_user: pmc
+          args:
+            chdir: /home/pmc/shairport
+
+        - name: install shairport boot cron job
+          cron: special_time=reboot name="shairport" user=pmc job="/bin/bash --login -c 'cd /home/pmc/shairport; ./shairport -a junction'"
+          sudo: yes
+          sudo_user: pmc
+
