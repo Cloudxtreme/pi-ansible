@@ -138,12 +138,12 @@
           sudo_user: pmc
 
         - name: install wiimote 3 boot cron job
-          cron: special_time=reboot name="wiimote 3" user=pmc job="/bin/bash --login -c 'sleep 20; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:1E:35:D8:B2:2A'"
+          cron: special_time=reboot name="wiimote 3" user=pmc job="#/bin/bash --login -c 'sleep 20; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:1E:35:D8:B2:2A'"
           sudo: yes
           sudo_user: pmc
 
         - name: install wiimote 4 boot cron job
-          cron: special_time=reboot name="wiimote 4" user=pmc job="/bin/bash --login -c 'sleep 25; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:1E:35:71:F3:C8'"
+          cron: special_time=reboot name="wiimote 4" user=pmc job="#/bin/bash --login -c 'sleep 25; cp /media/leto/ROM/wiimote.input /tmp/wiimote.input; wminput -d -c /tmp/wiimote.input 00:1E:35:71:F3:C8'"
           sudo: yes
           sudo_user: pmc
 
