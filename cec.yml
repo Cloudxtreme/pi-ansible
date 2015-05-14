@@ -10,7 +10,7 @@
           sudo: yes
 
         - name: clone libcec repo
-          git: repo=git://github.com/Pulse-Eight/libcec.git dest=/home/pi/libcec version=libcec-2.2.0
+          git: repo=git://github.com/Pulse-Eight/libcec.git dest=/home/pi/libcec version=libcec-2.2.0 update=no
 
         - name: bootstrap
           shell: ./bootstrap
