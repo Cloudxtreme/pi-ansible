@@ -11,6 +11,8 @@ in ~/.ssh/config:
         Port 2213
 
 
-ssh junction mkdir .ssh
+mkdir .ssh
+sudo dpkg-reconfigure locales
+
 scp ~/.ssh/authorized_keys junction:.ssh/
 ansible-playbook -i ansible.inventory pmc.yml
