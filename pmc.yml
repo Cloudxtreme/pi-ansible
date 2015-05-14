@@ -75,7 +75,7 @@
           file: dest=/home/pi/.hushlogin state=touch
 
         - name: install boot cron job
-          cron: special_time=reboot name="pmc boot" user=pmc job="/bin/bash --login -c 'cd /home/pmc/pi-media-controller; PMC_HOST=10.0.1.5 PMC_DATABASE=/media/leto/media.sqlite PMC_LOCATION=Living\ Room screen -dmUS pmc twiggy -Ilib -Iextlib'"
+          cron: special_time=reboot name="pmc boot" user=pmc job="/bin/bash --login -c 'sleep 5; cd /home/pmc/pi-media-controller; PMC_HOST=10.0.1.5 PMC_DATABASE=/media/leto/media.sqlite PMC_LOCATION=Living\ Room screen -dmUS pmc twiggy -Ilib -Iextlib'"
           sudo: yes
 
         - name: install backup cron job
