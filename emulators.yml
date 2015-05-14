@@ -31,7 +31,7 @@
           sudo: yes
 
         - name: clone RetroArch
-          git: repo=git://github.com/libretro/RetroArch.git dest=/home/pmc/RetroArch
+          git: repo=git://github.com/libretro/RetroArch.git dest=/home/pmc/RetroArch update=no
           sudo: yes
           sudo_user: pmc
 
@@ -43,7 +43,7 @@
             chdir: /home/pmc/RetroArch
 
         - name: clone fceumm
-          git: repo=git://github.com/libretro/libretro-fceumm.git dest=/home/pmc/libretro-fceumm
+          git: repo=git://github.com/libretro/libretro-fceumm.git dest=/home/pmc/libretro-fceumm update=no
           sudo: yes
           sudo_user: pmc
 
@@ -60,7 +60,7 @@
           sudo_user: pmc
 
         - name: clone picodrive
-          git: repo=git://github.com/libretro/picodrive.git dest=/home/pmc/picodrive
+          git: repo=git://github.com/libretro/picodrive.git dest=/home/pmc/picodrive update=no
           sudo: yes
           sudo_user: pmc
 
@@ -77,7 +77,7 @@
           sudo_user: pmc
 
         - name: clone snes9x repo
-          git: repo=git://github.com/libretro/snes9x-next.git dest=/home/pmc/snes9x-next
+          git: repo=git://github.com/libretro/snes9x-next.git dest=/home/pmc/snes9x-next update=no
           sudo: yes
           sudo_user: pmc
 
@@ -94,7 +94,7 @@
           sudo_user: pmc
 
         - name: clone pocketsnes repo
-          git: repo=git://github.com/libretro/pocketsnes-libretro.git dest=/home/pmc/pocketsnes-libretro
+          git: repo=git://github.com/libretro/pocketsnes-libretro.git dest=/home/pmc/pocketsnes-libretro update=no
           sudo: yes
           sudo_user: pmc
 
@@ -111,7 +111,7 @@
           sudo_user: pmc
 
         - name: clone gpsp
-          git: repo=git://github.com/libretro/gpsp.git dest=/home/pmc/gpsp
+          git: repo=git://github.com/libretro/gpsp.git dest=/home/pmc/gpsp update=no
           sudo: yes
           sudo_user: pmc
 
