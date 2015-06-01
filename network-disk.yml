@@ -1,0 +1,25 @@
+---
+- hosts: junction
+
+  handlers:
+        - name: Restart netatalk
+          action: service name=netatalk state=restarted
+
+  tasks:
+        - name: apt-get update
+          apt: update_cache=yes
+          sudo: yes
+
+        - name: netatalk
+          apt: name=netatalk state=present
+          sudo: yes
+
+        - name: Add media directory
+          lineinfile: dest=/etc/netatalk/AppleVolumes.default regexp="/media/vault" line="/media/vault/ \"vault\"" state=present
+          notify: Restart netatalk
+          sudo: yes
+
+        - name: Rename home directory
+          lineinfile: dest=/etc/netatalk/AppleVolumes.default regexp="~/" line="~/ \"home\"" state=present
+          notify: Restart netatalk
+          sudo: yes
