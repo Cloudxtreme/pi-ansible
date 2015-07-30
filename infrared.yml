@@ -1,0 +1,19 @@
+---
+- hosts: junction
+
+  tasks:
+        - name: apt-get update
+          apt: update_cache=yes
+          sudo: yes
+
+        - name: lirc
+          apt: name=lirc state=present
+          sudo: yes
+
+        - name: install hardware.conf
+          copy: src=infrared/hardware.conf dest=/etc/lirc/hardware.conf owner=root group=root mode=644
+          sudo: yes
+
+        - name: install lircd.conf
+          copy: src=infrared/lircd.conf dest=/etc/lirc/lircd.conf owner=root group=root mode=644
+          sudo: yes
