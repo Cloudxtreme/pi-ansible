@@ -15,7 +15,7 @@
           sudo: yes
 
         - name: Add media directory
-          lineinfile: dest=/etc/netatalk/AppleVolumes.default regexp="/media/leto" line="/media/leto/ \"leto\"" state=present
+          lineinfile: dest=/etc/netatalk/AppleVolumes.default regexp="/media/leto" line="/media/leto/ \"leto\" options:noadouble" state=present
           notify: Restart netatalk
           sudo: yes
 
