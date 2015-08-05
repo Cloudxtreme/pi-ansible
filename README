@@ -1,9 +1,7 @@
 in ~/.ssh/config:
     Host junction
         HostName 10.0.1.13
-        UserKnownHostsFile /dev/null
         User pi
-        StrictHostKeyChecking no
 
     Host junction-remote
         HostName junction.sartak.org
@@ -11,8 +9,16 @@ in ~/.ssh/config:
         Port 2213
 
 
-mkdir .ssh
-sudo dpkg-reconfigure locales
+on pi, with keyboard:
+    expand filesystem
+    set hostname
 
-scp ~/.ssh/authorized_keys junction:.ssh/
-ansible-playbook -i ansible.inventory pmc.yml
+from host:
+    mkdir .ssh
+    sudo dpkg-reconfigure locales
+        enable en_US.UTF-8 UTF-8
+    passwd # change pi's password away from "raspberry"
+
+on host:
+    scp ~/.ssh/authorized_keys junction:.ssh/
+    ansible-playbook -i ansible.inventory pmc.yml
