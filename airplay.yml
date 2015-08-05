@@ -23,7 +23,7 @@
             chdir: /home/pmc/shairport
 
         - name: install shairport boot cron job
-          cron: special_time=reboot name="shairport" user=pmc job="/bin/bash --login -c 'cd /home/pmc/shairport; ./shairport -a junction'"
+          cron: special_time=reboot name="shairport" user=pmc job="/bin/bash --login -c 'sleep 5; cd /home/pmc/shairport; ./shairport -a junction'"
           sudo: yes
           sudo_user: pmc
 
