@@ -27,7 +27,7 @@
           sudo: yes
 
         - name: add udev rule
-          shell: echo 'KERNEL=="uinput", MODE:="0666"' > /etc/udev/rules.d/wiimote.rules creates=/etc/udev/rules.d/wiimote.rules
+          shell: echo 'KERNEL=="uinput", MODE="0666"' > /etc/udev/rules.d/wiimote.rules creates=/etc/udev/rules.d/wiimote.rules
           sudo: yes
 
         - name: clone RetroArch
