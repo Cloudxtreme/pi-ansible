@@ -81,3 +81,8 @@
         - name: install backup cron job
           cron: special_time=hourly name="pmc backup" user=pmc job="/bin/bash --login -c 'cp /media/leto/media.sqlite tmp.sqlite; mv tmp.sqlite /media/leto/backup/media-$(shasum tmp.sqlite | perl -e \"<> =~ /^(\w+) /; print \$1\").sqlite'"
           sudo: yes
+
+        - name: gpu_mem
+          lineinfile: dest=/boot/config.txt regexp="^gpu_mem=" line="gpu_mem=128" state=present
+          sudo: yes
+
