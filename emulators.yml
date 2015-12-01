@@ -31,7 +31,7 @@
           sudo: yes
 
         - name: clone RetroArch
-          git: repo=git://github.com/libretro/RetroArch.git dest=/home/pmc/RetroArch update=no version=4e1365f94e13acadf15de3e6cb7f94dd8109d9e6
+          git: repo=git://github.com/libretro/RetroArch.git dest=/home/pmc/RetroArch update=no
           sudo: yes
           sudo_user: pmc
 
@@ -43,12 +43,12 @@
             chdir: /home/pmc/RetroArch
 
         - name: clone fceumm
-          git: repo=git://github.com/libretro/libretro-fceumm.git dest=/home/pmc/libretro-fceumm update=no version=4ec659eb065e3009fb4f00eef39c31fd4cd7b7c4
+          git: repo=git://github.com/libretro/libretro-fceumm.git dest=/home/pmc/libretro-fceumm update=no
           sudo: yes
           sudo_user: pmc
 
         - name: compile fceumm
-          shell: 'CFLAGS=" -O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 -f Makefile.libretro creates=/home/pmc/libretro-fceumm/fceumm_libretro.so'
+          shell: 'CFLAGS="-O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 -f Makefile.libretro creates=/home/pmc/libretro-fceumm/fceumm_libretro.so'
           sudo: yes
           sudo_user: pmc
           args:
@@ -60,12 +60,12 @@
           sudo_user: pmc
 
         - name: clone picodrive
-          git: repo=git://github.com/libretro/picodrive.git dest=/home/pmc/picodrive update=no version=0c65360da4ce59499767c454b596c2b5c4684f73
+          git: repo=git://github.com/libretro/picodrive.git dest=/home/pmc/picodrive update=no
           sudo: yes
           sudo_user: pmc
 
         - name: compile picodrive
-          shell: 'CFLAGS=" -O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 -f Makefile.libretro creates=/home/pmc/picodrive/picodrive_libretro.so'
+          shell: 'CFLAGS="-O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 -f Makefile.libretro creates=/home/pmc/picodrive/picodrive_libretro.so'
           sudo: yes
           sudo_user: pmc
           args:
@@ -77,12 +77,12 @@
           sudo_user: pmc
 
         - name: clone snes9x repo
-          git: repo=git://github.com/libretro/snes9x-next.git dest=/home/pmc/snes9x-next update=no version=d27e3218a911d91438b162ab8524c8e1b803cab4
+          git: repo=git://github.com/libretro/snes9x-next.git dest=/home/pmc/snes9x-next update=no
           sudo: yes
           sudo_user: pmc
 
         - name: compile snes9x
-          shell: 'CFLAGS=" -O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 -f Makefile.libretro creates=/home/pmc/snes9x-next/snes9x_next_libretro.so'
+          shell: 'CFLAGS="-O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 -f Makefile.libretro platform=armvneon creates=/home/pmc/snes9x-next/snes9x_next_libretro.so'
           sudo: yes
           sudo_user: pmc
           args:
@@ -94,12 +94,12 @@
           sudo_user: pmc
 
         - name: clone pocketsnes repo
-          git: repo=git://github.com/libretro/pocketsnes-libretro.git dest=/home/pmc/pocketsnes-libretro update=no version=ac83fb25f0c7f59350b92819e83e8fdecb7fc397
+          git: repo=git://github.com/libretro/pocketsnes-libretro.git dest=/home/pmc/pocketsnes-libretro update=no
           sudo: yes
           sudo_user: pmc
 
         - name: compile pocketsnes
-          shell: 'CFLAGS=" -O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 creates=/home/pmc/pocketsnes-libretro/libretro.so'
+          shell: 'CFLAGS="-O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 creates=/home/pmc/pocketsnes-libretro/libretro.so'
           sudo: yes
           sudo_user: pmc
           args:
@@ -111,12 +111,12 @@
           sudo_user: pmc
 
         - name: clone gpsp
-          git: repo=git://github.com/libretro/gpsp.git dest=/home/pmc/gpsp update=no version=94385ee3dfcafa69b9dd31e377274c5e95bb0092
+          git: repo=git://github.com/libretro/gpsp.git dest=/home/pmc/gpsp update=no
           sudo: yes
           sudo_user: pmc
 
         - name: compile gpsp
-          shell: 'CFLAGS=" -O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 creates=/home/pmc/gpsp/gpsp_libretro.so'
+          shell: 'CFLAGS="-O3 -mfpu=neon-vfpv4 -mfloat-abi=hard" make -j2 creates=/home/pmc/gpsp/gpsp_libretro.so'
           sudo: yes
           sudo_user: pmc
           args:
