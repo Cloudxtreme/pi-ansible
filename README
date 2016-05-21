@@ -1,3 +1,8 @@
+unzip 2016-05-10-raspbian-jessie-lite.zip
+diskutil list
+diskutil unmount /dev/disk#
+sudo dd bs=1m if=2016-05-10-raspbian-jessie-lite.img of=/dev/rdisk#
+
 in ~/.ssh/config:
     Host junction
         HostName 10.0.1.13
