@@ -27,3 +27,10 @@ from host:
 on host:
     scp ~/.ssh/authorized_keys junction:.ssh/
     ansible-playbook -i ansible.inventory pmc.yml
+
+
+overclocking: /boot/config.txt
+    arm_freq=700
+    core_freq=250
+    sdram_freq=400
+    over_voltage=0
