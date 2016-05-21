@@ -4,6 +4,7 @@
   handlers:
         - name: Restart netatalk
           action: service name=netatalk state=restarted
+          sudo: yes
 
   tasks:
         - name: apt-get update
