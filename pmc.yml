@@ -46,7 +46,7 @@
           sudo_user: pmc
 
         - name: install perl dependencies
-          apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl,libfile-next-perl,libmp4-info-perl,libimage-exiftool-perl,libfile-slurp-perl,libxml-libxml-perl,libxml-libxml-lazybuilder-perl,libpackage-new-perl,libnet-upnp-perl,libdigest-sha-perl,libanyevent-http-perl,libipc-run3-perl
+          apt: name=twiggy,libutf8-all-perl,libjson-perl,libmouse-perl,libdbd-sqlite3-perl,libfile-next-perl,libmp4-info-perl,libimage-exiftool-perl,libfile-slurp-perl,libxml-libxml-perl,libxml-libxml-lazybuilder-perl,libpackage-new-perl,libnet-upnp-perl,libdigest-sha-perl,libanyevent-http-perl,libipc-run3-perl,libcarp-always-perl
           sudo: yes
 
         - name: install useful tools
