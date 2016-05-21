@@ -19,6 +19,10 @@
           notify: Restart ssh
           sudo: yes
 
+        - name: git
+          apt: name=git state=present
+          sudo: yes
+
         - name: sqlite
           apt: name=sqlite3 state=present
           sudo: yes
