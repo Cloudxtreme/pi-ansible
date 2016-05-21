@@ -5,7 +5,7 @@
         - name: Restart ssh
           action: service name=ssh state=restarted
 
-        - name: Mount leto
+        - name: Mount paul
           shell: mount -a
           sudo: yes
 
@@ -31,14 +31,14 @@
           user: name=pmc group=video
           sudo: yes
 
-        - name: create leto mount dir
-          file: name=/media/leto state=directory
+        - name: create paul mount dir
+          file: name=/media/paul state=directory
           sudo: yes
 
-        - name: automatically mount leto
-          lineinfile: dest=/etc/fstab regexp="/media/leto" line="/dev/disk/by-uuid/6ef5a53b-bf29-44bd-877e-e02d6e8048d7 /media/leto ext4 defaults,noatime 0 0" state=present
+        - name: automatically mount paul
+          lineinfile: dest=/etc/fstab regexp="/media/paul" line="/dev/disk/by-uuid/feb11725-a136-4b94-8ad9-079bfc2d1d3e /media/paul ext4 defaults,noatime 0 0" state=present
           sudo: yes
-          notify: Mount leto
+          notify: Mount paul
 
         - name: clone pi-media-controller repo
           git: repo=https://github.com/sartak/pi-media-controller.git dest=/home/pmc/pi-media-controller update=no
@@ -54,7 +54,7 @@
           sudo: yes
 
         - name: install config
-          file: dest=/home/pmc/pi-media-controller/config.json src=/media/leto/pmc.config state=link force=yes
+          file: dest=/home/pmc/pi-media-controller/config.json src=/media/paul/pmc.config state=link force=yes
           sudo: yes
           sudo_user: pmc
 
@@ -63,7 +63,7 @@
           sudo: yes
 
         - name: PMC_DATABASE
-          lineinfile: dest=/home/pmc/.bashrc regexp="PMC_DATABASE=" line="export PMC_DATABASE=/media/leto/media.sqlite" state=present
+          lineinfile: dest=/home/pmc/.bashrc regexp="PMC_DATABASE=" line="export PMC_DATABASE=/media/paul/media.sqlite" state=present
           sudo: yes
           sudo_user: pmc
 
@@ -71,11 +71,11 @@
           file: dest=/home/pi/.hushlogin state=touch
 
         - name: install boot cron job
-          cron: special_time=reboot name="pmc boot" user=pmc job="/bin/bash --login -c 'sleep 5; cd /home/pmc/pi-media-controller; PMC_DATABASE=/media/leto/media.sqlite PMC_LOCATION=Living\ Room screen -dmUS pmc twiggy -Ilib -Iextlib'"
+          cron: special_time=reboot name="pmc boot" user=pmc job="/bin/bash --login -c 'sleep 5; cd /home/pmc/pi-media-controller; PMC_DATABASE=/media/paul/media.sqlite PMC_LOCATION=Living\ Room screen -dmUS pmc twiggy -Ilib -Iextlib'"
           sudo: yes
 
         - name: install backup cron job
-          cron: special_time=hourly name="pmc backup" user=pmc job="/bin/bash --login -c 'cp /media/leto/media.sqlite tmp.sqlite; mv tmp.sqlite /media/leto/backup/media-$(shasum tmp.sqlite | perl -e \"<> =~ /^(\w+) /; print \$1\").sqlite'"
+          cron: special_time=hourly name="pmc backup" user=pmc job="/bin/bash --login -c 'cp /media/paul/media.sqlite tmp.sqlite; mv tmp.sqlite /media/paul/backup/media-$(shasum tmp.sqlite | perl -e \"<> =~ /^(\w+) /; print \$1\").sqlite'"
           sudo: yes
 
         - name: gpu_mem
