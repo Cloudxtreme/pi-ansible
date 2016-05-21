@@ -17,6 +17,8 @@ in ~/.ssh/config:
 on pi, with keyboard:
     expand filesystem
     set hostname
+        change /etc/hostname
+        add loopback entry in /etc/hosts
 
 from host:
     mkdir .ssh
