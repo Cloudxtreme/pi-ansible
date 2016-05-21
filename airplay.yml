@@ -10,6 +10,10 @@
           apt: name=libao-dev,libssl-dev,avahi-utils,libwww-perl,libcrypt-openssl-rsa-perl,libio-socket-inet6-perl,libmodule-build-perl
           sudo: yes
 
+        - name: add pmc to audio group
+          user: name=pmc groups=audio append=yes
+          sudo: yes
+
         - name: clone shairport
           git: repo=https://github.com/abrasive/shairport.git dest=/home/pmc/shairport update=no
           sudo: yes
