@@ -1,0 +1,5 @@
+irrecord --device=/dev/ttyUSB0  --driver=uirt2_raw ir.conf --disable-namespace
+
+AC: [MODE or COOL DRY FAN] POWER DOWN UP TIMER [FAN or HIGH LOW SLEEP] [SCALE]
+TV: POWER OK INPUT EXIT UP DOWN LEFT RIGHT VOLUP VOLDOWN MUTE
+
