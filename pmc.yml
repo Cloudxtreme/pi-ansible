@@ -83,7 +83,7 @@
           sudo: yes
 
         - name: install clear stream cron job
-          cron: special_time=hourly name="pmc clear stream tmp" user=pmc job="/bin/bash --login -c 'find /media/paul/tmp/pmc -atime +7 -type f -delete'"
+          cron: special_time=hourly name="pmc clear stream tmp" user=pmc job="/bin/bash --login -c 'find /media/paul/tmp/pmc -atime +7 -type f -delete; find /media/paul/tmp/pmc -type d -empty -delete'"
           sudo: yes
 
         - name: gpu_mem
