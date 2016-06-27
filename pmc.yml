@@ -14,6 +14,10 @@
           apt: update_cache=yes
           sudo: yes
 
+        - name: fail2ban
+          apt: name=fail2ban state=present
+          sudo: yes
+
         - name: Disallow password authentication
           lineinfile: dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
           notify: Restart ssh
